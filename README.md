@@ -6,7 +6,7 @@ This means you can use GitHub releases or git tags and have Travis deploy automa
 
 ## Warning
 
-In order to use this tool please **delete** the `version` key from your `package.json` (or if you must keep `version` in your `package.json` you can use `npm-prepublish --lax`).
+In order to use this tool please **set** the `version` key from your `package.json` to `0.0.0` (this is because npm will refuse to install any package that doesn't have a version number - [issue raised here](https://github.com/npm/npm/issues/7105) - or if you must keep the real `version` in your `package.json` you can use `npm-prepublish --lax` and `npm-prepublish` will skip this check).
 
 ## Installation
 

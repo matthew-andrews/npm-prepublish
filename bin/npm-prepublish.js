@@ -28,7 +28,7 @@ if (argv.verbose) {
 
 // adding `version` to `package.json` is quite unnecessary
 var packageJsonVersion = require(process.cwd() + '/package.json').version;
-if (packageJsonVersion) {
+if (packageJsonVersion || packageJsonVersion !== '0.0.0') {
 	if (argv.lax) {
 		logger.info("Adding `version` to `package.json` is quite unnecessary");
 	} else {
