@@ -42,7 +42,7 @@ before_deploy:
 - npm-prepublish --verbose
 ```
 
-Under `on:`
+And these too, under `on:`
 
 ```yml
 all_branches: true
