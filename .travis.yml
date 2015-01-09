@@ -8,7 +8,7 @@ deploy:
   email: matt@mattandre.ws
   api_key:
     secure: X5/szt+4EU6mt8EzxoPWbXYabFNED5BfXyePI4mb62XhEqno+J3/647K2vChAtGewpg5XxLYmclLLt5Jyv21vUiClJkQ+stGw+Mxrx23ZKNJooi/E3HwyEffua4v2xjq1X5wU2Z3aD5BKYeJKsqWmBWt6EhRfbpp5p4B28ZvQpw=
-  before_deploy: ./bin/npm-prepublish.js
+  before_deploy: ./bin/npm-prepublish.js --travis
   on:
     all_branches: true
     tags: true
