@@ -19,6 +19,5 @@
   "devDependencies": {
     "jshint": "^2.5.11",
     "lintspaces-cli": "0.0.4"
-  },
-  "version": "0.0.7"
+  }
 }
