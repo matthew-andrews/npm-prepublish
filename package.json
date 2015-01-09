@@ -1,7 +1,9 @@
 {
   "name": "npm-prepublish",
   "bin": {
-    "npm-prepublish": "./bin/npm-prepublish.js",
+    "npm-prepublish": "./bin/npm-prepublish.js"
+  },
+  "scripts": {
     "files": "find . -name '*.js' ! -path './node_modules/*' ! -path './bower_components/*'",
     "test": "jshint `npm run -s files` && lintspaces -i js-comments -e .editorconfig `npm run -s files`"
   },
