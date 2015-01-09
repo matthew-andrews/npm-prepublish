@@ -5,6 +5,11 @@ var logger = module.exports = require('winston');
 require('es6-promise').polyfill();
 var denodeify = require('denodeify');
 var exec = denodeify(require('child_process').exec, function(err, stdout, stderr) { return [err, stdout]; });
+var semversionizerComparison = require('semversionizer-comparison');
+var jsonFile = require('jsonfile');
+var jsonFileRead = denodeify(jsonFile.readFile);
+var jsonFileWrite = denodeify(jsonFile.writeFile);
+var NoSemverTagError = require('../lib/no-semver-tag-error');
 
 var argv = require('minimist')(process.argv.slice(2));
 
@@ -33,7 +38,40 @@ if (packageJsonVersion) {
 
 
 // ascertain which version of the package should be published, bail if tag not semvery
+exec('git tag -l --contains HEAD')
+	.then(function(tags) {
+		tags = tags.trim().split("\n");
+		if (tags.length === 0) throw new NoSemverTagError("No semver tag found against current commit");
+		logger.info("Current commit has tags: " + tags.join(', '));
+		tags = tags.map(function(tag) {
+			return tag.replace(/^v/, "");
+		});
+		tags = tags.sort(semversionizerComparison);
+		return tags[tags.length - 1];
+	})
 
-// put that version in the `package.json` file
+	// put that version in the `package.json` file
+	.then(function(version) {
+		logger.info("Current version: " + version);
+		return jsonFileRead(process.cwd() + '/package.json')
+			.then(function(object) {
+				object.version = version;
+				jsonFileWrite(process.cwd() + '/package.json', object);
+			});
+	})
 
-// add a warning at the end to remove the version from `package.json` so that it doesn't accidentally get committed
+
+	// add a warning at the end to remove the version from `package.json` so that it doesn't accidentally get committed
+	.then(function() {
+		logger.warn("`npm prepublish` has added a `version` parameter into `package.json`.  Be careful not to commit it");
+	})
+
+
+	.catch(function(err) {
+		if (err instanceof NoSemverTagError) {
+			logger.info(err.toString());
+		} else {
+			logger.error(err.toString());
+			process.exit(1);
+		}
+	});
