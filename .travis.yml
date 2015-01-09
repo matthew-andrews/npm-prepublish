@@ -11,5 +11,7 @@ deploy:
   api_key:
     secure: XpmyrqhyFkjKuFEB2W4OBPXv5KbsjDhNFzOgDfAgo140GAmBeZwh3B7Ft4B4HRpyAvsrYMN1iOut5ra8ZEkxHgO8vDDOhY5iIpuO9jjlR0MVAVkjHBwYA+uuvdNkwVT/HtGCQpSYF5KZPs1aDb9W9XfELgjTuIPKhXIgx6VKG1w=
   on:
+    all_branches: true
     tags: true
+    node: '0.10'
     repo: matthew-andrews/npm-prepublish
