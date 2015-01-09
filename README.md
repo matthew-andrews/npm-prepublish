@@ -19,7 +19,7 @@ node_js:
 - '0.10'
 - '0.11'
 before_deploy:
-- ./bin/npm-prepublish.js --verbose
+- npm-prepublish --verbose
 deploy:
   provider: npm
   email: "YOUR EMAIL ADDRESS"
