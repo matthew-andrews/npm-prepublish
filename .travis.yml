@@ -1,4 +1,13 @@
 language: node_js
 script: npm test
 node_js:
-  - "0.10"
+- '0.10'
+- '0.11'
+deploy:
+  provider: npm
+  api_key:
+    secure: R6OpWhekOEWYum8iCtHP+sTMe9UC/ZKs6ru6PMNAiRAzGxdcSVpDD4z2ahLNDXLl3SlDhZjE9BEJLsfrr4mQ6KA4hnR+qXAs0zvY+UpH2nxa7PNjTaJOwYKVf/GsDdmOQxOY8Fd4WO8d8lvsUIjZ6tguTriUEbpW+NK9yin8B8M=
+  before_deploy: npm-prepublish
+  on:
+    tags: true
+    node: '0.10'
