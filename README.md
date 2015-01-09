@@ -2,6 +2,8 @@
 
 Allows you use to use a continuous testing tool (such as **Travis**) to deploy to npm on every tag (or if you must keep `version` in your `package.json` you can use `npm-prepublish --lax`).
 
+This means you can use GitHub releases or git tags and have Travis deploy automagically for you to the npm registry.
+
 ## Warning
 
 In order to use this tool please **delete** the `version` key from your `package.json`.
