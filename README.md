@@ -9,7 +9,7 @@ In order to use this tool please **delete** the `version` key from your `package
 ## Installation
 
 ```sh
-npm install --save-dev npm publish
+npm install --save-dev npm-prepublish
 ```
 
 ```yml
