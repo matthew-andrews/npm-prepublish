@@ -1,7 +1,9 @@
 {
   "name": "npm-prepublish",
   "bin": {
-    "npm-prepublish": "./bin/npm-prepublish.js"
+    "npm-prepublish": "./bin/npm-prepublish.js",
+    "files": "find . -name '*.js' ! -path './node_modules/*' ! -path './bower_components/*'",
+    "test": "jshint `npm run -s files` && lintspaces -i js-comments -e .editorconfig `npm run -s files`"
   },
   "dependencies": {
     "semversionizer-parser": "https://github.com/orangemug/semversionizer-parser/archive/v0.1.0.tar.gz",
@@ -11,5 +13,9 @@
     "jsonfile": "^2.0.0",
     "minimist": "^1.1.0",
     "winston": "^0.8.3"
+  },
+  "devDependencies": {
+    "jshint": "^2.5.11",
+    "lintspaces-cli": "0.0.4"
   }
 }
