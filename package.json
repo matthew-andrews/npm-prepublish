@@ -3,6 +3,10 @@
   "bin": {
     "npm-prepublish": "./bin/npm-prepublish.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/matthew-andrews/npm-prepublish.git"
+  },
   "scripts": {
     "files": "find . -name '*.js' ! -path './node_modules/*' ! -path './bower_components/*'",
     "test": "jshint `npm run -s files` && lintspaces -i js-comments -e .editorconfig `npm run -s files`",
