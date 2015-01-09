@@ -1,6 +1,6 @@
 # npm-prepublish
 
-Allows you use to use a continuous testing tool (such as **Travis) to deploy to npm on every tag.
+Allows you use to use a continuous testing tool (such as **Travis**) to deploy to npm on every tag (or if you must keep `version` in your `package.json` you can use `npm-prepublish --lax`).
 
 ## Warning
 
