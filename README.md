@@ -1,6 +1,6 @@
 # npm-prepublish
 
-Allows you use to use a continuous testing tool (such as **Travis**) to deploy to npm on every tag.
+Allows you use to use a continuous testing tool (such as **Travis**) to deploy to npm on every semver-y tag.
 
 This means you can use GitHub releases or git tags and have Travis deploy automagically for you to the npm registry.
 
