@@ -48,3 +48,7 @@ tags: true
 ```
 
 You only need to specify `node` if you are testing on multiple versions of node.
+
+## Credits and collaboration ##
+
+The lead developer of **npm-prepublish** is [Matt Andrews](http://twitter.com/andrewsmatt) at FT Labs. All open source code released by FT Labs is licenced under the MIT licence. We welcome comments, feedback and suggestions.  Please feel free to raise an issue or pull request.
