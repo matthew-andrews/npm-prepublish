@@ -5,10 +5,12 @@ node_js:
 - '0.11'
 deploy:
   provider: npm
+  email: matt@mattandre.ws
   api_key:
-    secure: R6OpWhekOEWYum8iCtHP+sTMe9UC/ZKs6ru6PMNAiRAzGxdcSVpDD4z2ahLNDXLl3SlDhZjE9BEJLsfrr4mQ6KA4hnR+qXAs0zvY+UpH2nxa7PNjTaJOwYKVf/GsDdmOQxOY8Fd4WO8d8lvsUIjZ6tguTriUEbpW+NK9yin8B8M=
+    secure: X5/szt+4EU6mt8EzxoPWbXYabFNED5BfXyePI4mb62XhEqno+J3/647K2vChAtGewpg5XxLYmclLLt5Jyv21vUiClJkQ+stGw+Mxrx23ZKNJooi/E3HwyEffua4v2xjq1X5wU2Z3aD5BKYeJKsqWmBWt6EhRfbpp5p4B28ZvQpw=
   before_deploy: npm-prepublish
   on:
     all_branches: true
     tags: true
     node: '0.10'
+    repo: matthew-andrews/npm-prepublish
