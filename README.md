@@ -46,3 +46,5 @@ Under `on:`
 all_branches: true
 tags: true
 ```
+
+You only need to specify `node` if you are testing on multiple versions of node.
