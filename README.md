@@ -30,3 +30,17 @@ deploy:
     node: '0.10'
     repo: YOUR-GITHUB-USERNAME/YOUR-GITHUB-REPOSITORY
 ```
+
+I recommend running `travis setup npm` and then adding the following lines to your `.travis.yml` file.
+
+```yml
+before_deploy:
+- npm-prepublish --verbose
+```
+
+Under `on:`
+
+```yml
+all_branches: true
+tags: true
+```
