@@ -6,6 +6,7 @@ require('es6-promise').polyfill();
 var denodeify = require('denodeify');
 var exec = denodeify(require('child_process').exec, function(err, stdout, stderr) { return [err, stdout]; });
 var semversionizerComparison = require('semversionizer-comparison');
+var semversionizerParser = require('semversionizer-parser');
 var jsonFile = require('jsonfile');
 var jsonFileRead = denodeify(jsonFile.readFile);
 var jsonFileWrite = denodeify(jsonFile.writeFile);
@@ -41,11 +42,16 @@ if (packageJsonVersion) {
 exec('git tag -l --contains HEAD')
 	.then(function(tags) {
 		tags = tags.trim().split("\n");
-		if (tags.length === 0) throw new NoSemverTagError("No semver tag found against current commit");
 		logger.info("Current commit has tags: " + tags.join(', '));
+
+		// Clean off the 'v' for compatibility with semversionizer
 		tags = tags.map(function(tag) {
 			return tag.replace(/^v/, "");
 		});
+
+		// Remove any tags that aren't semver tags
+		tags = tags.filter(semversionizerParser);
+		if (tags.length === 0) throw new NoSemverTagError("No semver tag found against current commit");
 		tags = tags.sort(semversionizerComparison);
 		return tags[tags.length - 1];
 	})

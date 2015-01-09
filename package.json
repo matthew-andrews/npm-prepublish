@@ -4,6 +4,8 @@
     "npm-prepublish": "./bin/npm-prepublish.js"
   },
   "dependencies": {
+    "semversionizer-parser": "https://github.com/orangemug/semversionizer-parser/archive/v0.1.0.tar.gz",
+    "semversionizer-comparison": "https://github.com/orangemug/semversionizer-comparison/archive/v0.1.0.tar.gz",
     "denodeify": "^1.2.0",
     "es6-promise": "^2.0.1",
     "jsonfile": "^2.0.0",
