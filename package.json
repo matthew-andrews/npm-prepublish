@@ -1,5 +1,8 @@
 {
   "name": "npm-prepublish",
+  "bin": {
+    "npm-prepublish": "./bin/npm-prepublish.js"
+  },
   "dependencies": {
     "denodeify": "^1.2.0",
     "es6-promise": "^2.0.1",
