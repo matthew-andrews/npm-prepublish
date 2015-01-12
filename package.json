@@ -2,7 +2,12 @@
   "name": "npm-prepublish",
   "version": "0.0.0",
   "bin": {
-    "npm-prepublish": "./bin/npm-prepublish.js"
+    "npm-prepublish": "./bin/npm-prepublish.js",
+    "npm-prepublish-clean": "./bin/npm-prepublish-clean.js"
+  },
+  "scripts": {
+    "prepublish": "./bin/npm-prepublish.js",
+    "publish": "./bin/npm-prepublish-clean.js"
   },
   "repository": {
     "type": "git",
