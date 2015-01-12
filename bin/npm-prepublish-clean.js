@@ -12,7 +12,7 @@ var argv = require('minimist')(process.argv.slice(2));
 
 jsonFileRead(process.cwd() + '/package.json')
 	.then(function(object) {
-		delete object.version;
+		object.version = '0.0.0';
 		jsonFileWrite(process.cwd() + '/package.json', object);
 	})
 	.catch(function(err) {
