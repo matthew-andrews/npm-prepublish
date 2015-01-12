@@ -5,15 +5,13 @@
     "npm-prepublish": "./bin/npm-prepublish.js",
     "npm-prepublish-clean": "./bin/npm-prepublish-clean.js"
   },
-  "scripts": {
-    "prepublish": "./bin/npm-prepublish.js",
-    "publish": "./bin/npm-prepublish-clean.js"
-  },
   "repository": {
     "type": "git",
     "url": "http://github.com/matthew-andrews/npm-prepublish.git"
   },
   "scripts": {
+    "prepublish": "./bin/npm-prepublish.js",
+    "publish": "./bin/npm-prepublish-clean.js",
     "files": "find . -name '*.js' ! -path './node_modules/*' ! -path './bower_components/*'",
     "test": "jshint `npm run -s files` && lintspaces -i js-comments -e .editorconfig `npm run -s files`",
     "release": "./bin/npm-prepublish.js --verbose && npm publish && git checkout package.json"
