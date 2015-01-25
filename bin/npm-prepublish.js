@@ -44,11 +44,6 @@ exec('git tag -l --contains HEAD')
 		tags = tags.trim().split("\n");
 		logger.info("Current commit has tags: " + tags.join(', '));
 
-		// Clean off the 'v' for compatibility with semversionizer
-		tags = tags.map(function(tag) {
-			return tag.replace(/^v/, "");
-		});
-
 		// Remove any tags that aren't semver tags
 		tags = tags.filter(semversionizerParser);
 		if (tags.length === 0) throw new NoSemverTagError("No semver tag found against current commit");
