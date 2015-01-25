@@ -51,6 +51,19 @@ tags: true
 
 You only need to specify `node` if you are testing on multiple versions of node.
 
+# Other CI providers (including Codeship, Jenkins…)
+
+Change your test command to:-
+
+```
+npm test && if [[ $CI_BRANCH =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] ; then npm-prepublish && printf "_auth = $NPM_AUTH_TOKEN\nemail = $NPM_EMAIL\n" > .npmrc && npm publish; fi
+```
+
+And ensure that the following environment variables are set for each job:-
+
+- `NPM_AUTH_TOKEN` — Your npm auth token (`echo -n "username:password" | base64`)
+- `NPM_EMAIL` — Your npm account's email address
+
 ## Credits and collaboration ##
 
 The lead developer of **npm-prepublish** is [Matt Andrews](http://twitter.com/andrewsmatt) at FT Labs. All open source code released by FT Labs is licenced under the MIT licence. We welcome comments, feedback and suggestions.  Please feel free to raise an issue or pull request.
