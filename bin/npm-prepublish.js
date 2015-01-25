@@ -39,7 +39,7 @@ if (packageJsonVersion && packageJsonVersion !== '0.0.0') {
 
 
 // ascertain which version of the package should be published, bail if tag not semvery
-exec('git tag -l --contains HEAD')
+exec('git tag -l --points-at HEAD')
 	.then(function(tags) {
 		tags = tags.trim().split("\n");
 		logger.info("Current commit has tags: " + tags.join(', '));
