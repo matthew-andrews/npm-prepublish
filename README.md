@@ -10,7 +10,20 @@ In order to use this tool please **set** the `version` key from your `package.js
 
 If you really, really want to keep updating `version` in your `package.json` file you can use `npm-prepublish --lax` to skip this check).
 
-## Installation
+## Installation (Codeship, Jenkins…)
+
+Change your test command to:-
+
+```
+npm test && if [[ $CI_BRANCH =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] ; then npm-prepublish && printf "_auth = $NPM_AUTH_TOKEN\nemail = $NPM_EMAIL\n" > .npmrc && npm publish; fi
+```
+
+And ensure that the following environment variables are set for each job:-
+
+- `NPM_AUTH_TOKEN` — Your npm auth token (`echo -n "username:password" | base64`)
+- `NPM_EMAIL` — Your npm account's email address
+
+## Installation (Travis)
 
 ```sh
 npm install --save-dev npm-prepublish
@@ -50,19 +63,6 @@ tags: true
 ```
 
 You only need to specify `node` if you are testing on multiple versions of node.
-
-## Other CI providers (inc. Codeship, Jenkins…)
-
-Change your test command to:-
-
-```
-npm test && if [[ $CI_BRANCH =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] ; then npm-prepublish && printf "_auth = $NPM_AUTH_TOKEN\nemail = $NPM_EMAIL\n" > .npmrc && npm publish; fi
-```
-
-And ensure that the following environment variables are set for each job:-
-
-- `NPM_AUTH_TOKEN` — Your npm auth token (`echo -n "username:password" | base64`)
-- `NPM_EMAIL` — Your npm account's email address
 
 ## Credits and collaboration ##
 
