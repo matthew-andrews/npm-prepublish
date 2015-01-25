@@ -50,14 +50,28 @@ exec('git tag -l --points-at HEAD')
 		tags = tags.sort(semversionizerComparison);
 		return tags[tags.length - 1];
 	})
+	.catch(function(err) {
+		if (err instanceof NoSemverTagError) {
+			return jsonFileRead(process.cwd() + '/package.json')
+				.then(function(object) {
+					delete object.version;
+					logger.warn("`npm prepublish` has removed the `version` parameter into `package.json` to stop it from being published.  Be careful not to commit it");
+					return jsonFileWrite(process.cwd() + '/package.json', object);
+				})
+				.then(function() {
+					throw err;
+				});
+		}
+		throw err;
+	})
 
 	// put that version in the `package.json` file
 	.then(function(version) {
 		logger.info("Current version: " + version);
 		return jsonFileRead(process.cwd() + '/package.json')
 			.then(function(object) {
-				object.version = version;
-				jsonFileWrite(process.cwd() + '/package.json', object);
+				object.version = version.replace(/^v/, '');
+				return jsonFileWrite(process.cwd() + '/package.json', object);
 			});
 	})
 
