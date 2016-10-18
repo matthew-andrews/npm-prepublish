@@ -14,16 +14,15 @@
     "release": "./bin/npm-prepublish.js --verbose && npm publish && git checkout package.json"
   },
   "dependencies": {
-    "semversionizer-parser": "git://github.com/orangemug/semversionizer-parser.git#v0.2.0",
-    "semversionizer-comparison": "git://github.com/orangemug/semversionizer-comparison.git#v0.2.0",
     "denodeify": "^1.2.0",
     "es6-promise": "^2.0.1",
     "jsonfile": "^2.0.0",
     "minimist": "^1.1.0",
+    "semver": "^5.3.0",
     "winston": "^0.8.3"
   },
   "devDependencies": {
     "jshint": "^2.5.11",
-    "lintspaces-cli": "0.0.4"
+    "lintspaces-cli": "^0.4.0"
   }
 }
