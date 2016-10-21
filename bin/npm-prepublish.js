@@ -5,8 +5,7 @@ var logger = module.exports = require('winston');
 require('es6-promise').polyfill();
 var denodeify = require('denodeify');
 var exec = denodeify(require('child_process').exec, function(err, stdout, stderr) { return [err, stdout]; });
-var semversionizerComparison = require('semversionizer-comparison');
-var semversionizerParser = require('semversionizer-parser');
+var semver = require('semver');
 var jsonFile = require('jsonfile');
 var jsonFileRead = denodeify(jsonFile.readFile);
 var jsonFileWrite = denodeify(jsonFile.writeFile);
@@ -45,9 +44,11 @@ exec('git tag -l --points-at HEAD')
 		logger.info("Current commit has tags: " + tags.join(', '));
 
 		// Remove any tags that aren't semver tags
-		tags = tags.filter(semversionizerParser);
+		tags = tags.filter(function(tag) {
+			return semver.valid(tag) !== null; // semver.valid returns the parsed version, or null if it's not valid.
+		});
 		if (tags.length === 0) throw new NoSemverTagError("No semver tag found against current commit");
-		tags = tags.sort(semversionizerComparison);
+		tags = tags.sort(semver.compare);
 		return tags[tags.length - 1];
 	})
 	.catch(function(err) {
