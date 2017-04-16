@@ -29,40 +29,18 @@ And ensure that the following environment variables are set for each job:-
 npm install --save-dev npm-prepublish
 ```
 
-```yml
-language: node_js
-script: npm test
-node_js:
-- '0.10'
-- '0.11'
-before_deploy:
-- npm-prepublish --verbose
-deploy:
-  provider: npm
-  email: "YOUR EMAIL ADDRESS"
-  api_key: "YOUR API KEY"
-  on:
-    all_branches: true
-    tags: true
-    node: '0.10'
-    repo: YOUR-GITHUB-USERNAME/YOUR-GITHUB-REPOSITORY
+Simply add `prepublish` and `publish` into your `package.json`'s npm scripts like this:-
+
+```json
+[...]
+  "scripts": {
+    "prepublish": "npm-prepublish",
+    "publish": "npm-prepublish-clean"
+  }
+[...]
 ```
 
-I recommend running `travis setup npm` and then adding the following lines to your `.travis.yml` file.
-
-```yml
-before_deploy:
-- npm-prepublish --verbose
-```
-
-And these too, under `on:`
-
-```yml
-all_branches: true
-tags: true
-```
-
-You only need to specify `node` if you are testing on multiple versions of node.
+Then, if you're using Travis, use `travis setup npm` to set up npm registry deployment as usual.
 
 ## Credits and collaboration ##
 

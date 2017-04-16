@@ -3,8 +3,6 @@ script: npm test
 node_js:
 - '0.10'
 - '0.11'
-before_deploy:
-- ./bin/npm-prepublish.js --verbose
 deploy:
   provider: npm
   email: matt@mattandre.ws
