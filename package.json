@@ -1,5 +1,6 @@
 {
   "name": "npm-prepublish",
+  "license": "MIT",
   "version": "0.0.0",
   "bin": {
     "npm-prepublish": "./bin/npm-prepublish.js"
